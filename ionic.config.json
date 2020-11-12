@@ -1,0 +1,7 @@
+{
+  "name": "Absensi_Karyawan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
