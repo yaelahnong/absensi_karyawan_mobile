@@ -33,19 +33,36 @@ import '@ionic/react/css/typography.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Home from './Home';
+import HomePage from './pages/HomePage/HomePage';
 import Login from './Auth/Login';
 
-const App: React.FC = () => (
+const Home: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      <IonTabs>
         <IonRouterOutlet>
-          <Route path="/Login" component={Login} exact={true} />
-          <Route path="/Home" component={Home} exact={true} />
+          <Route path="/Home" component={HomePage} exact={true} />
+          <Route path="/tab2" component={Tab2} exact={true} />
+          <Route path="/tab3" component={Tab3} exact={true} />
           <Route path="/" render={() => <Redirect to="/Home" />} exact={true} />
         </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="Home" href="/Home">
+            <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon icon={scan} />
+            <IonLabel>Scan</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon icon={personCircle} />
+            <IonLabel>Profile</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
 
-export default App;
+export default Home;
