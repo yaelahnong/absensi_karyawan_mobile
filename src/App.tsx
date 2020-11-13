@@ -1,19 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs
+  IonApp
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { home, scan, personCircle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,6 +27,9 @@ import './theme/variables.css';
 import Login from './Auth/Login';
 import BotNavComp from './components/BotNavComp/BotNavComp';
 import HomePage from './pages/HomePage/HomePage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+
+
 
 const App: React.FC = () => (
   <IonApp>
@@ -49,8 +43,8 @@ const App: React.FC = () => (
           <Tab2 />
           <BotNavComp />
         </Route>
-        <Route path="/tab3" exact={true}>
-          <Tab3 />
+        <Route path="/profile" exact={true}>
+          <ProfilePage />
           <BotNavComp />
         </Route>
         <Route path="/login" exact={true}>
