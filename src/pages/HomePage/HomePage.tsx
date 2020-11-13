@@ -2,7 +2,7 @@ import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/rea
 import React, { Component } from 'react';
 import ExploreContainer from '../../components/ExploreContainer';
 
-class Home extends Component {
+class HomePage extends Component {
     render() {
         return (
             <IonPage>
@@ -19,4 +19,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default HomePage;

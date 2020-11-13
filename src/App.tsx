@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -33,17 +33,31 @@ import '@ionic/react/css/typography.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Home from './Home';
 import Login from './Auth/Login';
+import BotNavComp from './components/BotNavComp/BotNavComp';
+import HomePage from './pages/HomePage/HomePage';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/Login" component={Login} exact={true} />
-          <Route path="/Home" component={Home} exact={true} />
-          <Route path="/" render={() => <Redirect to="/Home" />} exact={true} />
-        </IonRouterOutlet>
+      <Switch>
+        <Route path="/home" exact={true}>
+          <HomePage />
+          <BotNavComp />
+        </Route>
+        <Route path="/tab2" exact={true}>
+          <Tab2 />
+          <BotNavComp />
+        </Route>
+        <Route path="/tab3" exact={true}>
+          <Tab3 />
+          <BotNavComp />
+        </Route>
+        <Route path="/login" exact={true}>
+          <Login />
+        </Route>
+        <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+      </Switch>
     </IonReactRouter>
   </IonApp>
 );
