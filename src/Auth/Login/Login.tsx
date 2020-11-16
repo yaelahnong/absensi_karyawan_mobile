@@ -20,7 +20,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import React, { Component, FormEvent } from 'react';
-import { lockClosedOutline, mailOutline  } from 'ionicons/icons';
+import { lockClosedOutline, lockClosedSharp, mailOutline, mailSharp  } from 'ionicons/icons';
 import styled from 'styled-components';
 
 import '@ionic/react/css/text-alignment.css';
@@ -35,13 +35,17 @@ const Content = styled(IonContent)`
 const InputItem = styled(IonItem)`
     --padding-start: 0;
     --inner-padding-end: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 `;
 
 const StyledInput = styled(IonInput)`
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     background-color: #e5e7f0;
+    font-family: 'Poppins';
+    font-size: 14px;
+    --padding-top: 11.5px;
+    --padding-bottom: 11.5px;
 `;
 
 const StyledIcon = styled(IonIcon)`
@@ -50,12 +54,13 @@ const StyledIcon = styled(IonIcon)`
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     box-sizing: border-box;
+    font-size: 24px;
 `;
 
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: #a0a0a0; 
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-size: 12px;
 `;
 
@@ -156,7 +161,7 @@ class Login extends Component {
                                     <form onSubmit={e => this.handleSubmit(e)} action="post">
                                         <IonList>
                                             <InputItem lines="none">
-                                                <StyledIcon icon={mailOutline} color="primary" />
+                                                <StyledIcon icon={mailOutline} color="primary" ios={mailOutline} md={mailSharp} />
                                                 <StyledInput 
                                                     type="email" 
                                                     name="email"
@@ -168,7 +173,7 @@ class Login extends Component {
                                                 />
                                             </InputItem>
                                             <InputItem lines="none">
-                                                <StyledIcon icon={lockClosedOutline} color="primary" />
+                                                <StyledIcon icon={lockClosedOutline} color="primary" ios={lockClosedOutline} md={lockClosedSharp} />
                                                 <StyledInput 
                                                     type="password" 
                                                     name="password"

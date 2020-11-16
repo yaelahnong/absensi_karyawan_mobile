@@ -1,0 +1,17 @@
+/* .ios ion-icon {
+    font-size: 22.5px;  
+} */
+
+.ios ion-input {
+    --padding-top: 12.2px;
+    --padding-bottom: 12.2px;
+}
+
+.ios ion-title {
+    padding-inline-start: 50px;
+    padding-inline-end: 50px;
+}
+
+.ios {
+    --overflow: hidden;
+}

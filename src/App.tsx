@@ -1,9 +1,9 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import {
-  IonApp
+  IonApp,
+  IonRouterOutlet
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
 import Tab2 from './pages/Tab2';
 
 /* Core CSS required for Ionic components to work properly */
@@ -29,34 +29,43 @@ import BotNavComp from './components/BotNavComp/BotNavComp';
 import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ForgotPassword from './Auth/ForgotPassword/ForgotPassword';
+import ResetPassword from './Auth/ResetPassword/ResetPassword';
 
-
+const NoMatch = () => {
+  return <div>404 Not found</div>
+}
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <Switch>
-        <Route path="/home" exact={true}>
-          <HomePage />
-          <BotNavComp />
-        </Route>
-        <Route path="/tab2" exact={true}>
-          <Tab2 />
-          <BotNavComp />
-        </Route>
-        <Route path="/profile" exact={true}>
-          <ProfilePage />
-          <BotNavComp />
-        </Route>
-        <Route path="/login" exact={true}>
-          <Login />
-        </Route>
-        <Route path="/forgot-password" exact={true}>
-          <ForgotPassword />
-        </Route>
-        <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
-      </Switch>
-    </IonReactRouter>
+    <Router>
+      <IonRouterOutlet>
+        <Switch>
+          <Route path="/home">
+            <HomePage />
+            <BotNavComp />
+          </Route>
+          <Route path="/tab2">
+            <Tab2 />
+            <BotNavComp />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
+            <BotNavComp />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/forgot-password">
+            <ForgotPassword />
+          </Route>
+          <Route path="/reset-password/:token" component={ResetPassword} />
+          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route>
+            <NoMatch />
+          </Route>
+        </Switch>
+      </IonRouterOutlet>
+    </Router>
   </IonApp>
 );
 

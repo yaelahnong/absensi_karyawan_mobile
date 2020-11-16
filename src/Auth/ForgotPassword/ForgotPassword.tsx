@@ -1,17 +1,10 @@
-import { IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/react';
-import { mailOutline, lockClosedOutline } from 'ionicons/icons';
+import { IonAlert, IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonGrid, IonInput, IonLabel, IonPage, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/react';
+import Axios from 'axios';
 import React, { Component, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledGrid = styled(IonGrid)`
     padding-inline-start: 12.5px;
-`;
-
-const InputItem = styled(IonItem)`
-    --padding-start: 0;
-    --inner-padding-end: 0;
-    margin-bottom: 5px;
 `;
 
 const StyledInput = styled(IonInput)`
@@ -28,15 +21,7 @@ const StyledInput = styled(IonInput)`
     font-size: 14px;
     width: 100%;
     line-height: 20px;
-    margin-bottom: 5px;
-`;
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    color: #a0a0a0;
-    padding-right: 8px;
-    margin-bottom: 5px;
-    font-size: 12px;
+    margin-bottom: 10px;
 `;
 
 const FlexBtn = styled.div`
@@ -45,10 +30,17 @@ const FlexBtn = styled.div`
 `;
 
 class ForgotPassword extends Component {
+    state = {
+        email: '',
+        showAlert: false,
+        title: '',
+        message: ''
+    }
 
     handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         
+        this.onSendEmail();
     }
 
     handleInputChange = (e: { target: { name: string; value: string; }; }) => {
@@ -56,12 +48,50 @@ class ForgotPassword extends Component {
             [e.target.name]: e.target.value
         });
     }
+
+    onSendEmail = () => {
+        try {
+            Axios.post('http://localhost:8000/forgot_password', {
+                email: this.state.email
+            }).then((result) => {
+                let title = '';
+                let message = '';
+                if(result.data.success === false) {
+                    title = 'Incorrect Email Address';
+                    message = result.data.message;
+                    this.setState({
+                        title: title,
+                        message: message,
+                        showAlert: true
+                    });
+                } else {
+                    title = 'Email Sent';
+                    message = result.data.message;
+                    this.setState({
+                        title: title,
+                        message: message,
+                        showAlert: true
+                    });
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
 
     render() {
         return (
             <IonPage>
                 <IonContent fullscreen>
+                    <IonAlert
+                        isOpen={this.state.showAlert}
+                        onDidDismiss={() => this.setState({showAlert: false})}
+                        cssClass='my-custom-class'
+                        header={this.state.title ? this.state.title : ''}
+                        message={this.state.message ? this.state.message : ''}
+                        buttons={['OK']}
+                    />
                     <IonToolbar>
                         <IonButtons slot="start">
                             <IonBackButton defaultHref="/"></IonBackButton>
