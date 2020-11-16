@@ -24,10 +24,11 @@ import '@ionic/react/css/typography.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Login from './Auth/Login';
+import Login from './Auth/Login/Login';
 import BotNavComp from './components/BotNavComp/BotNavComp';
 import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import ForgotPassword from './Auth/ForgotPassword/ForgotPassword';
 
 
 
@@ -49,6 +50,9 @@ const App: React.FC = () => (
         </Route>
         <Route path="/login" exact={true}>
           <Login />
+        </Route>
+        <Route path="/forgot-password" exact={true}>
+          <ForgotPassword />
         </Route>
         <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
       </Switch>

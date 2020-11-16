@@ -9,11 +9,13 @@ import {
     IonFooter, 
     IonGrid, 
     IonIcon, 
+    IonImg, 
     IonInput, 
     IonItem, 
     IonList, 
     IonPage, 
     IonRow,
+    IonText,
     IonTitle,
     IonToolbar
 } from '@ionic/react';
@@ -22,6 +24,7 @@ import { lockClosedOutline, mailOutline  } from 'ionicons/icons';
 import styled from 'styled-components';
 
 import '@ionic/react/css/text-alignment.css';
+import './Login.css';
 import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -30,28 +33,28 @@ const Content = styled(IonContent)`
 `;
 
 const InputItem = styled(IonItem)`
-    --padding-start: 8px;
-    --inner-padding-end: 8px;
+    --padding-start: 0;
+    --inner-padding-end: 0;
     margin-bottom: 5px;
 `;
 
 const StyledInput = styled(IonInput)`
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     background-color: #e5e7f0;
 `;
 
 const StyledIcon = styled(IonIcon)`
     padding: 10px; 
     background-color: #e5e7f0;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-sizing: border-box;
 `;
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-    color: #a0a0a0;
-    padding-right: 8px;
+    color: #a0a0a0; 
     margin-bottom: 5px;
     font-size: 12px;
 `;
@@ -59,6 +62,7 @@ const StyledLink = styled(Link)`
 const FlexBtn = styled.div`
     display: flex;
     justify-content: center;
+    
 `;
 
 class Login extends Component {
@@ -137,16 +141,22 @@ class Login extends Component {
                     />
                     {/* <IonImg src="assets/images/restaurant.png" /> */}
                     <IonGrid style={{height: '100%'}}>
-                        <IonRow style={{height: '100%', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                            <IonCard style={{width: '90%'}}>
+                        <IonRow style={{height: '30%', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+                            <IonText>
+                                <IonImg src="./assets/icon/qrcode-scan-36.png" />
+                                {/* <h2 style={{color: '#fff', fontWeight: 'bold'}}>Company logo</h2> */}
+                            </IonText>
+                        </IonRow>
+                        <IonRow style={{height: '70%', flexDirection: 'column', alignItems: 'center'}}>
+                            <IonCard style={{width: '90%', borderRadius: '16px'}}>
                                 <IonCardHeader>
-                                    <IonCardTitle style={{paddingLeft: '8px', fontWeight: '600', fontSize: '22px', color: '#30419b'}}>Login</IonCardTitle>
+                                    <IonCardTitle style={{fontWeight: '600', fontSize: '22px', color: '#30419b'}}>Login</IonCardTitle>
                                 </IonCardHeader>
                                 <IonCardContent>
                                     <form onSubmit={e => this.handleSubmit(e)} action="post">
                                         <IonList>
                                             <InputItem lines="none">
-                                                <StyledIcon icon={mailOutline} />
+                                                <StyledIcon icon={mailOutline} color="primary" />
                                                 <StyledInput 
                                                     type="email" 
                                                     name="email"
@@ -158,7 +168,7 @@ class Login extends Component {
                                                 />
                                             </InputItem>
                                             <InputItem lines="none">
-                                                <StyledIcon icon={lockClosedOutline} />
+                                                <StyledIcon icon={lockClosedOutline} color="primary" />
                                                 <StyledInput 
                                                     type="password" 
                                                     name="password"
@@ -167,10 +177,10 @@ class Login extends Component {
                                                 />
                                             </InputItem>
                                             <div className="forgot-password-link" style={{display: 'flex', justifyContent: 'flex-end'}}>
-                                                <StyledLink to="">Forgot Password?</StyledLink>
+                                                <StyledLink to="/forgot-password">Forgot Password?</StyledLink>
                                             </div>
                                             <FlexBtn>
-                                                <IonButton type="submit" style={{width: '24ch'}}>Login</IonButton>
+                                                <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>Login</IonButton>
                                             </FlexBtn>
                                         </IonList>
                                     </form>
