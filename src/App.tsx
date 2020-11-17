@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   IonApp,
   IonRouterOutlet
@@ -30,6 +30,7 @@ import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ForgotPassword from './Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './Auth/ResetPassword/ResetPassword';
+import { IonReactRouter } from '@ionic/react-router';
 
 const NoMatch = () => {
   return <div>404 Not found</div>
@@ -37,9 +38,8 @@ const NoMatch = () => {
 
 const App: React.FC = () => (
   <IonApp>
-    <Router>
+    <IonReactRouter>
       <IonRouterOutlet>
-        <Switch>
           <Route path="/home">
             <HomePage />
             <BotNavComp />
@@ -63,9 +63,8 @@ const App: React.FC = () => (
           <Route>
             <NoMatch />
           </Route>
-        </Switch>
       </IonRouterOutlet>
-    </Router>
+    </IonReactRouter>
   </IonApp>
 );
 
