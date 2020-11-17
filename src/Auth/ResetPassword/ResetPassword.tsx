@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonGrid, IonInput, IonLabel, IonPage, IonRow } from '@ionic/react';
+import { IonButton, IonContent, IonGrid, IonInput, IonLabel, IonPage, IonRow, IonSpinner } from '@ionic/react';
 import Axios from 'axios';
 import React, { Component, FormEvent } from 'react';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router';
@@ -41,7 +41,8 @@ class ResetPassword extends Component<MatchProps> {
         confirmPassword: '',
         error: false,
         errorMsg: '',
-        isLoading: true
+        isValidating: true,
+        isLoading: false
     }
 
     async componentDidMount() {
@@ -52,12 +53,12 @@ class ResetPassword extends Component<MatchProps> {
                     if(result.data.message === 'Token valid') {
                         this.setState({
                             email: result.data.email,
-                            isLoading: false
+                            isValidating: false
                         });
                     } else {
                         this.setState({
                             error: true,
-                            isLoading: false
+                            isValidating: false
                         });
                     }
                 }).catch((error) => {
@@ -77,11 +78,17 @@ class ResetPassword extends Component<MatchProps> {
     }
 
     onUpdatePassword = async () => {
+        this.setState({
+            isLoading: true
+        });
         try {
             await Axios.put(`http://localhost:8000/updatePasswordViaEmail/${this.props.match.params.token}`, {
                 email: this.state.email,
                 password: this.state.password
             }).then((result) => {
+                this.setState({
+                    isLoading: false
+                });
                 if( result.data.message === 'Password updated' ) {
                     this.onLoginUser();
                 } else {
@@ -164,7 +171,7 @@ class ResetPassword extends Component<MatchProps> {
         if(sessionStorage.getItem('login')) {
             return <Redirect to={'/'} />
         }
-        if(this.state.isLoading) {
+        if(this.state.isValidating) {
             return <div>Loading ...</div>
         } else {
             return (
@@ -186,7 +193,9 @@ class ResetPassword extends Component<MatchProps> {
                                         onIonInput={(e: any) => this.handleInputChange(e)} 
                                     />
                                     <FlexBtn>
-                                        <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>Reset</IonButton>
+                                        <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>
+                                            {this.state.isLoading ? <IonSpinner color="light" /> : 'Reset'}
+                                        </IonButton>
                                     </FlexBtn>
                                 </form>
                             </IonRow>

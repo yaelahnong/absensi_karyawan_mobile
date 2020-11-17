@@ -1,4 +1,4 @@
-import { IonAlert, IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonGrid, IonInput, IonLabel, IonPage, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAlert, IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonGrid, IonInput, IonLabel, IonPage, IonRow, IonSpinner, IonText, IonTitle, IonToolbar } from '@ionic/react';
 import Axios from 'axios';
 import React, { Component, FormEvent } from 'react';
 import styled from 'styled-components';
@@ -34,7 +34,8 @@ class ForgotPassword extends Component {
         email: '',
         showAlert: false,
         title: '',
-        message: ''
+        message: '',
+        isLoading: false
     }
 
     handleSubmit = async (e: FormEvent) => {
@@ -50,10 +51,16 @@ class ForgotPassword extends Component {
     }
 
     onSendEmail = () => {
+        this.setState({
+            isLoading: true
+        });
         try {
             Axios.post('http://localhost:8000/forgot_password', {
                 email: this.state.email
             }).then((result) => {
+                this.setState({
+                    isLoading: false
+                });
                 let title = '';
                 let message = '';
                 if(result.data.success === false) {
@@ -128,7 +135,9 @@ class ForgotPassword extends Component {
                                 onIonInput={(e: any) => this.handleInputChange(e)} 
                             />
                             <FlexBtn>
-                                <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>Send</IonButton>
+                                <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>
+                                    {this.state.isLoading ? <IonSpinner color="light" /> : 'Send'}
+                                </IonButton>
                             </FlexBtn>
                         </form>
                     </div>

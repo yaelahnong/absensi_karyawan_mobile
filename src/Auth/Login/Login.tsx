@@ -15,6 +15,7 @@ import {
     IonList, 
     IonPage, 
     IonRow,
+    IonSpinner,
     IonText,
     IonTitle,
     IonToolbar
@@ -77,7 +78,8 @@ class Login extends Component {
         email: '',
         password: '',
         redirect: false,
-        showAlert: false
+        showAlert: false,
+        isLoading: false
     }
 
     componentDidMount() {
@@ -102,11 +104,17 @@ class Login extends Component {
     }
     
     onUserLogin = async () => {
+        this.setState({
+            isLoading: true
+        });
         try {
             await Axios.post('http://localhost:8000/login', {
                 email: this.state.email,
                 password: this.state.password
             }).then((result) => {
+                this.setState({
+                    isLoading: false
+                });
                 console.log(result);
                 let data = result.data;
                 if(data.success === true) {
@@ -186,7 +194,9 @@ class Login extends Component {
                                                 <StyledLink to="/forgot-password">Forgot Password?</StyledLink>
                                             </div>
                                             <FlexBtn>
-                                                <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>Login</IonButton>
+                                                <IonButton type="submit" style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>
+                                                    {this.state.isLoading ? <IonSpinner color="light" /> : 'Login'}
+                                                </IonButton>
                                             </FlexBtn>
                                         </IonList>
                                     </form>
