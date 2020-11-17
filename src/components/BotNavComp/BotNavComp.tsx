@@ -11,16 +11,15 @@ const BotNavComp: React.FC = () => {
         <IonTabs>
             <IonRouterOutlet>
                 <Route path="/home" component={HomePage} exact={true} />
-                <Route path="/tab2" component={Tab2} exact={true} />
+                <Route path="/scan" component={Tab2} exact={true} />
                 <Route path="/profile" component={ProfilePage} exact={true} />
-                <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
             <IonTabButton tab="home" href="/home">
                 <IonIcon icon={home} />
                 <IonLabel>Home</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="scan" href="/scan">
                 <IonIcon icon={scan} />
                 <IonLabel>Scan</IonLabel>
             </IonTabButton>

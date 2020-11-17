@@ -39,10 +39,11 @@ class ProfilePage extends Component {
                         <IonTitle>Profile</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <IonContent>
+                <IonContent color="step">
                     <IonButton className="ion-text-center" onClick={() => this.onUserLogout()}>
                         {this.state.isLoading ? <IonSpinner color="light" /> : 'Logout'}
                     </IonButton>
+                    
                     
                 </IonContent>
             </IonPage>

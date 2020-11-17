@@ -1,10 +1,9 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonRouterOutlet
 } from '@ionic/react';
-import Tab2 from './pages/Tab2';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -30,6 +29,8 @@ import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ForgotPassword from './Auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './Auth/ResetPassword/ResetPassword';
+import ScanPage from './pages/ScanPage/ScanPage';
+
 import { IonReactRouter } from '@ionic/react-router';
 
 const NoMatch = () => {
@@ -44,8 +45,8 @@ const App: React.FC = () => (
             <HomePage />
             <BotNavComp />
           </Route>
-          <Route path="/tab2">
-            <Tab2 />
+          <Route path="/scan">
+            <ScanPage />
             <BotNavComp />
           </Route>
           <Route path="/profile">
