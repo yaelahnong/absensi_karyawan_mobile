@@ -20,7 +20,7 @@ const BotNavComp: React.FC = () => {
                 <IonIcon icon={home} />
                 <IonLabel>Home</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="scan" href="/scan">
                 <IonIcon icon={scan} />
                 <IonLabel>Scan</IonLabel>
             </IonTabButton>

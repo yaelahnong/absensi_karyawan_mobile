@@ -107,6 +107,7 @@ class Login extends Component {
                 email: this.state.email,
                 password: this.state.password
             }).then((result) => {
+                console.log(result);
                 let data = result.data;
                 if(data.success === true) {
                     sessionStorage.setItem('login', 'true');
