@@ -1,8 +1,37 @@
-.ios ion-buttons {
+.ios .back-btn-profile {
     top: 30px;
     left: 30px;
 }
 
-.md ion-back-button {
-    --icon-font-size: 32px;
+.back-btn-profile {
+    direction: rtl;
+}
+
+.md .inner-btn {
+    --icon-font-size: 40px;
+}
+
+.ios .inner-btn {
+    --icon-font-size: 40px;
+}
+
+/* .ios .edit-btn-profile {
+    top: 36%;
+    --padding-start: 5px;
+    --padding-end: 5px;
+} */
+
+.item-inner{
+min-height: 1px !important;
+}
+
+.label-md{
+    margin-bottom: 1px!important;
+    margin-top: 1px!important;
+}
+
+ion-item-divider{
+    margin-top: 0px;
+    min-height: 2.5px;
+    max-width: 46%;
 }

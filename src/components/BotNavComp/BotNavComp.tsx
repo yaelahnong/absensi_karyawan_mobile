@@ -1,11 +1,10 @@
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { home, scan, personCircle } from 'ionicons/icons';
 import React from 'react';
-import { Route, Redirect } from 'react-router';
+import { Route } from 'react-router';
 import HomePage from '../../pages/HomePage/HomePage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import ScanPage from '../../pages/ScanPage/ScanPage';
-import Tab2 from '../../pages/Tab2';
 
 const BotNavComp: React.FC = () => {
     return (
