@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonHeader, IonPage, IonSpinner, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 
@@ -39,9 +39,9 @@ class ProfilePage extends Component {
                         <IonTitle>Profile</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-                <IonContent color="step">
+                <IonContent>
                     <IonButton className="ion-text-center" onClick={() => this.onUserLogout()}>
-                        {this.state.isLoading ? <IonSpinner color="light" /> : 'Logout'}
+                        Logout
                     </IonButton>
                     
                     

@@ -45,14 +45,14 @@ const App: React.FC = () => (
             <HomePage />
             <BotNavComp />
           </Route>
-          <Route path="/scan">
+          {/* <Route path="/scan">
             <ScanPage />
             <BotNavComp />
           </Route>
           <Route path="/profile">
             <ProfilePage />
             <BotNavComp />
-          </Route>
+          </Route> */}
           <Route path="/login">
             <Login />
           </Route>
@@ -60,7 +60,7 @@ const App: React.FC = () => (
             <ForgotPassword />
           </Route>
           <Route path="/reset-password/:token" component={ResetPassword} />
-          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
           <Route>
             <NoMatch />
           </Route>

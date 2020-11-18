@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router';
 import HomePage from '../../pages/HomePage/HomePage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
+import ScanPage from '../../pages/ScanPage/ScanPage';
 import Tab2 from '../../pages/Tab2';
 
 const BotNavComp: React.FC = () => {
@@ -11,7 +12,7 @@ const BotNavComp: React.FC = () => {
         <IonTabs>
             <IonRouterOutlet>
                 <Route path="/home" component={HomePage} exact={true} />
-                <Route path="/scan" component={Tab2} exact={true} />
+                <Route path="/scan" component={ScanPage} exact={true} />
                 <Route path="/profile" component={ProfilePage} exact={true} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">

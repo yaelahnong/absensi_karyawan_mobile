@@ -30,7 +30,9 @@ import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
 const Content = styled(IonContent)`
-    --background: url(assets/images/restaurant.png) 0 0/100% 100% no-repeat;
+    &::part(background) {
+        background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(assets/images/restaurant.png) 0 0/100% 100% no-repeat;
+    }
 `;
 
 const InputItem = styled(IonItem)`
@@ -140,7 +142,7 @@ class Login extends Component {
 
     render() {
         if(this.state.redirect === true) {
-            return <Redirect to={'/'} />
+            return <Redirect to={'/home'} />
         }
         return (
             <IonPage>
@@ -206,7 +208,7 @@ class Login extends Component {
                     </IonGrid>
                 </Content>
                 <IonFooter>
-                    <IonToolbar color="primary">
+                    <IonToolbar style={{'--background': '#222d6c', color: '#ffffff'}}>
                         <IonTitle style={{fontSize: '10px', textAlign: 'center'}}>2020 &copy; Lingkar 9 Titian Media. All rights reserved.</IonTitle>
                     </IonToolbar>
                 </IonFooter>
