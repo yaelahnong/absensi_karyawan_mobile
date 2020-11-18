@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   IonApp,
   IonRouterOutlet
@@ -41,10 +41,19 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
+        <Switch>
           <Route path="/home">
             <HomePage />
             <BotNavComp />
           </Route>
+          <Route path="/scan">
+            <ScanPage />
+            <BotNavComp />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
+            <BotNavComp />
+          </Route> {/* nanti di comment */}
           {/* <Route path="/scan">
             <ScanPage />
             <BotNavComp />
@@ -64,6 +73,8 @@ const App: React.FC = () => (
           <Route>
             <NoMatch />
           </Route>
+
+        </Switch>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

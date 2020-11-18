@@ -85,6 +85,11 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        if(sessionStorage.getItem('login')) {
+            this.setState({
+                redirect: true
+            });
+        }
         this._isMounted = true;
     }
 
