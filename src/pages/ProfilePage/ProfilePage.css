@@ -7,13 +7,17 @@
     direction: rtl;
 }
 
-.md .inner-btn {
+/* .ios ion-content {
+    --overflow: scroll;
+} */
+
+/* .md .inner-btn {
     --icon-font-size: 40px;
 }
 
 .ios .inner-btn {
     --icon-font-size: 40px;
-}
+} */
 
 /* .ios .edit-btn-profile {
     top: 36%;
