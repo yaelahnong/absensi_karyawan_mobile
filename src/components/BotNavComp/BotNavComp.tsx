@@ -25,6 +25,9 @@ const StyledFab = styled(IonFab)`
     @media screen and (min-height: 720px){
         bottom: 2.2%;
     }
+    @media screen and (min-height: 731px){
+        bottom: 2.7%;
+    }
     @media screen and (min-height: 812px){
         bottom: 2.1%;
     }

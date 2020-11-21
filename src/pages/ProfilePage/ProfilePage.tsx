@@ -161,6 +161,12 @@ const EditProfilePicture = styled(IonButton)`
     right: 0;
     top: 37.7%;
 }
+@media screen and (min-height: 731px){
+    font-size: 28px;
+    position: absolute;
+    right: 0;
+    top: 41%;
+}
 @media screen and (min-height: 768px){
     font-size: 28px;
     position: absolute;
