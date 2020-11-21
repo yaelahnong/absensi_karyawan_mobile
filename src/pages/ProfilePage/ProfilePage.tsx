@@ -29,6 +29,11 @@ const StyledContainer = styled.div`
     align-items: start;
     max-height: 45%;
 }
+@media screen and (min-height: 720px){
+    display: flex;
+    align-items: start;
+    max-height: 42%;
+}
 @media screen and (min-height: 768px){
     display: flex;
     align-items: start;
@@ -42,7 +47,7 @@ const StyledContainer = styled.div`
 @media screen and (min-height: 992px){
     display: flex;
     align-items: start;
-    max-height: 49%;
+    max-height: 48%;
 }
 @media screen and (min-height: 1366px;){
     display: flex;
@@ -68,7 +73,7 @@ const ClipPath = styled.div`
 }
 @media screen and (min-height: 700px){
     justify-content: flex-end;
-    clip-path: circle(51.2% at 91% 24%);
+    clip-path: circle(51.2% at 91% 22%);
 }
 @media screen and (min-height: 768px){
     justify-content: flex-end;
@@ -76,7 +81,7 @@ const ClipPath = styled.div`
 }
 @media screen and (min-height: 992px){
     justify-content: flex-end;
-    clip-path: circle(48.8% at 91% 18%);
+    clip-path: circle(48.8% at 91% 15%);
 }
 `;
 
@@ -104,6 +109,12 @@ const StyledImg = styled(IonImg)`
     position: relative;
     top: 0;
     right: -112px;
+}
+@media screen and (min-height: 1024px){
+    min-width: 350px;
+    position: relative;
+    top: 0;
+    right: -236px;
 }
 @media screen and (min-height: 1366px){
     min-width: 350px;
@@ -148,7 +159,7 @@ const EditProfilePicture = styled(IonButton)`
     font-size: 28px;
     position: absolute;
     right: 0;
-    top: 42%;
+    top: 37.7%;
 }
 @media screen and (min-height: 768px){
     font-size: 28px;
@@ -166,35 +177,14 @@ const EditProfilePicture = styled(IonButton)`
     font-size: 28px;
     position: absolute;
     right: 0;
-    top: 47.3%;
+    top: 45.7%;
 }
 @media screen and (min-height: 1366px){
     font-size: 28px;
     position: absolute;
     right: 0;
-    top: 47.5%;
+    top: 46%;
 }
-`;
-
-const StyledFab = styled(IonFab)`
-    @media screen and (min-height: 667px){
-        background-color: rgba(253, 253, 253, 0.9);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        top: 28%;
-    }
-    @media screen and (min-height: 768px){
-        background-color: rgba(253, 253, 253, 0.9);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        top: 22%;
-    }
 `;
 
 const StyledCard = styled(IonCard)`
@@ -212,25 +202,20 @@ const StyledCard = styled(IonCard)`
     }
 `;
 
-const FlexBtn = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
 const StyledLogoutBtn = styled(IonButton)`
     @media screen and (min-height: 500px){
-        margin-bottom: 15px;
+        margin-bottom: 28px;
         margin-top: 12px;
         margin-left: 10px;
         margin-right: 10px;
     }
     @media screen and (min-height: 600px){
-        margin-bottom: 15px;
+        margin-bottom: 24px;
         margin-top: 12px;
         margin-inline: 16px;
     }
     @media screen and (min-height: 700px){
-        margin-bottom: 15px;
+        margin-bottom: 28px;
         margin-top: 12px;
         margin-inline: 32px;
     }
@@ -242,6 +227,26 @@ const StyledLogoutBtn = styled(IonButton)`
     @media screen and (min-height: 992px){
         margin-bottom: 10px;
         margin-top: 12px;
+        margin-inline: 28px;
+    }
+`;
+const StyledChangePassword = styled(IonButton)`
+    height: 28px;
+    @media screen and (min-height: 500px){
+
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    @media screen and (min-height: 600px){
+        margin-inline: 16px;
+    }
+    @media screen and (min-height: 700px){
+        margin-inline: 32px;
+    }
+    @media screen and (min-height: 768px){
+        margin-inline: 28px;
+    }
+    @media screen and (min-height: 992px){
         margin-inline: 28px;
     }
 `;
@@ -295,7 +300,7 @@ class ProfilePage extends Component {
                         </ClipPath>
                     </StyledContainer>
                         <EditProfilePicture fill="clear" onClick={() => console.log('clicked!')} className="edit-btn-profile">
-                            <IonIcon color="dark" className="camera-icon" icon={camera}></IonIcon>
+                            <IonIcon color="secondary" className="camera-icon" icon={camera}></IonIcon>
                         </EditProfilePicture>
                     <IonGrid className="ion-text-center">
                         <IonRow>
@@ -380,12 +385,16 @@ class ProfilePage extends Component {
                             </IonList> */}
                         </IonCardContent>
                     </StyledCard>
-                    <FlexBtn>
+                    {/* <FlexBtn>
                         <IonButtons className="back-btn-profile">
                             <IonBackButton text="Change Password" className="inner-btn" icon={chevronForwardOutline} color="primary" defaultHref="/home"></IonBackButton>
                         </IonButtons>
-                    </FlexBtn>
-                    <StyledLogoutBtn expand="block" fill="outline" className="ion-text-center" onClick={() => this.onUserLogout()}>
+                    </FlexBtn> */}
+                    <StyledChangePassword expand="block" fill="clear">
+                        <IonText>Change Password</IonText>
+                        <IonIcon slot="end" icon={chevronForwardOutline}></IonIcon>
+                    </StyledChangePassword>
+                    <StyledLogoutBtn expand="block" fill="outline" className="logout-btn" onClick={() => this.onUserLogout()}>
                         Logout
                     </StyledLogoutBtn>
                 </Content>

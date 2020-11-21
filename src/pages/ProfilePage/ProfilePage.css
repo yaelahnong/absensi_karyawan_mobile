@@ -11,6 +11,11 @@
     direction: rtl;
 }
 
+.ios .logout-btn {
+    height: 36px;
+    --border-width: 2px;
+}
+
 /* .ios ion-content {
     --overflow: scroll;
 } */

@@ -22,6 +22,9 @@ const StyledFab = styled(IonFab)`
     @media screen and (min-height: 700px){
         bottom: 3%;
     }
+    @media screen and (min-height: 720px){
+        bottom: 2.2%;
+    }
     @media screen and (min-height: 812px){
         bottom: 2.1%;
     }
@@ -38,7 +41,7 @@ const StyledFab = styled(IonFab)`
 
 const StyledFabButton = styled(IonFabButton)`
     --box-shadow: none;
-    border: 6px solid #ffffff;
+    border: 6px solid var(--ion-color-light);
     border-radius: 50%;
 `;
 

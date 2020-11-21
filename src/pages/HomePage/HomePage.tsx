@@ -24,11 +24,6 @@ class HomePage extends Component {
         }
         return (
             <IonPage>
-                <IonHeader>
-                    <IonToolbar>
-                        <IonTitle>Home</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
                 <IonContent fullscreen>
                     <ExploreContainer name="Home" />
                 </IonContent>
