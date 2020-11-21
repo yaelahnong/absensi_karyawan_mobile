@@ -142,6 +142,7 @@ class Login extends Component {
                     sessionStorage.setItem('nama', data.message.nama);
                     sessionStorage.setItem('email', data.message.email);
                     sessionStorage.setItem('no_telp', data.message.no_telp);
+                    sessionStorage.setItem('foto', data.message.foto);
                     sessionStorage.setItem('api_token', data.api_token);
                     this.setState({
                         redirect: true

@@ -291,11 +291,11 @@ class ProfilePage extends Component {
                             <IonBackButton text="" className="inner-btn" icon={chevronBackOutline} color="primary" defaultHref="/home"></IonBackButton>
                         </StyledButtons>
                         <ClipPath>
-                            <StyledImg src="assets/images/ino.jpg" />
+                            <StyledImg src={`assets/images/${sessionStorage.getItem('foto')}`} />
                         </ClipPath>
                     </StyledContainer>
                         <EditProfilePicture fill="clear" onClick={() => console.log('clicked!')} className="edit-btn-profile">
-                            <IonIcon color="light" className="camera-icon" icon={camera}></IonIcon>
+                            <IonIcon color="dark" className="camera-icon" icon={camera}></IonIcon>
                         </EditProfilePicture>
                     <IonGrid className="ion-text-center">
                         <IonRow>

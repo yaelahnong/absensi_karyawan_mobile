@@ -32,20 +32,20 @@ class ScanPage extends Component {
     //     // console.log(`Barcode data: ${data.text}`);
     // };
 
-    getLocation = async () => {
-        try {
-            await Geolocation.getCurrentPosition()
-            .then((result) => {
-                console.log(result);
-                this.setState({
-                    latitude: result.coords.latitude,
-                    longitude: result.coords.longitude
-                })
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // getLocation = async () => {
+    //     try {
+    //         await Geolocation.getCurrentPosition()
+    //         .then((result) => {
+    //             console.log(result);
+    //             this.setState({
+    //                 latitude: result.coords.latitude,
+    //                 longitude: result.coords.longitude
+    //             })
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     // qrScan = async () => {
     //     try {
@@ -71,16 +71,17 @@ class ScanPage extends Component {
 
     render() {
         return (
-            <IonPage>
-                <IonContent>
-                    <ScanComp />
-                    {/* <ExploreContainer name="Scan" /> */}
-                    {/* <IonButton onClick={() => this.qrScan()}>Scan QR Code</IonButton> */}
-                    {/* <IonButton onClick={() => this.openScanner()}>Scan Barcode</IonButton>
-                    <IonButton onClick={() => this.getLocation()}>{this.state.longitude && this.state.longitude ? `${this.state.latitude}, ${this.state.longitude}` : 'Get Location'}</IonButton>
-                    <IonButton onClick={() => this.setState({value:'', latitude: '', longitude: ''})}>Reset</IonButton> */}
-                </IonContent>
-            </IonPage>
+            <></>
+            // <ScanComp />
+            // <IonPage>
+            //     <IonContent>
+            //         <ExploreContainer name="Scan" />
+            //         <IonButton onClick={() => this.qrScan()}>Scan QR Code</IonButton>
+            //         <IonButton onClick={() => this.openScanner()}>Scan Barcode</IonButton>
+            //         <IonButton onClick={() => this.getLocation()}>{this.state.longitude && this.state.longitude ? `${this.state.latitude}, ${this.state.longitude}` : 'Get Location'}</IonButton>
+            //         <IonButton onClick={() => this.setState({value:'', latitude: '', longitude: ''})}>Reset</IonButton> */}
+            //     </IonContent>
+            // </IonPage>
         )
     }
 }
