@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Plugins, Capacitor } from "@capacitor/core";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
   IonApp,
@@ -32,52 +33,78 @@ import ResetPassword from './Auth/ResetPassword/ResetPassword';
 import ScanPage from './pages/ScanPage/ScanPage';
 
 import { IonReactRouter } from '@ionic/react-router';
+import OvertimePage from './pages/Overtime/OvertimePage';
+import ApprovalPage from './pages/Approval/ApprovalPage';
 
 const NoMatch = () => {
   return <div>404 Not found</div>
 }
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Switch>
-          <Route path="/home">
-            <HomePage />
-            <BotNavComp />
-          </Route>
-          <Route path="/scan">
-            <ScanPage />
-            <BotNavComp />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
-            <BotNavComp />
-          </Route> {/* nanti di comment */}
-          {/* <Route path="/scan">
-            <ScanPage />
-            <BotNavComp />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage />
-            <BotNavComp />
-          </Route> */}
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/forgot-password">
-            <ForgotPassword />
-          </Route>
-          <Route path="/reset-password/:token" component={ResetPassword} />
-          <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
-          <Route>
-            <NoMatch />
-          </Route>
+const App: React.FC = () => {
+  
+  useEffect(() => {
+    if (Capacitor.isNative) {
+      Plugins.App.addListener("backButton", (e) => {
+        if (window.location.pathname === "/home" || window.location.pathname === "/scan" || window.location.pathname === "/profile") {
+            Plugins.App.exitApp();
 
-        </Switch>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+        } else if (window.location.pathname === "/login") {
+            Plugins.App.exitApp();
+        } 
+      });
+    }
+  }, []);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Switch>
+            <Route path="/home">
+              <HomePage />
+              <BotNavComp />
+            </Route>
+            <Route path="/overtime">
+              <OvertimePage />
+              <BotNavComp />
+            </Route>
+            <Route path="/scan">
+              <ScanPage />
+              <BotNavComp />
+            </Route>
+            <Route path="/approval">
+              <ApprovalPage />
+              <BotNavComp />
+            </Route>
+            <Route path="/profile">
+              <ProfilePage />
+              <BotNavComp />
+            </Route>
+            {/* <Route path="/scan">
+              <ScanPage />
+              <BotNavComp />
+            </Route>
+            <Route path="/profile">
+              <ProfilePage />
+              <BotNavComp />
+            </Route> */}
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/forgot-password">
+              <ForgotPassword />
+            </Route>
+            <Route path="/reset-password/:token" component={ResetPassword} />
+            <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
+            <Route>
+              <NoMatch />
+            </Route>
+
+          </Switch>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  )
+};
 
 export default App;

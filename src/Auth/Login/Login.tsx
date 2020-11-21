@@ -35,10 +35,16 @@ const Content = styled(IonContent)`
     }
 `;
 
+const StyledCard = styled(IonCard)`
+    width: 90%; 
+    border-radius: 16px;
+`;
+
 const InputItem = styled(IonItem)`
     --padding-start: 0;
     --inner-padding-end: 0;
     margin-bottom: 10px;
+    border-radius: 8px;
 `;
 
 const StyledInput = styled(IonInput)`
@@ -71,6 +77,12 @@ const FlexBtn = styled.div`
     display: flex;
     justify-content: center;
     
+`;
+
+const StyledFooter = styled(IonFooter)`
+    @media (max-height: 500px){
+        display: none;
+    }
 `;
 
 class Login extends Component {
@@ -115,7 +127,7 @@ class Login extends Component {
             isLoading: true
         });
         try {
-            await Axios.post('http://localhost:8000/login', {
+            await Axios.post('http://192.168.1.12/absensi_karyawan_api/public/login', {
                 email: this.state.email,
                 password: this.state.password
             }).then((result) => {
@@ -169,13 +181,13 @@ class Login extends Component {
                             </IonText>
                         </IonRow>
                         <IonRow style={{height: '70%', flexDirection: 'column', alignItems: 'center'}}>
-                            <IonCard style={{width: '90%', borderRadius: '16px'}}>
+                            <StyledCard color="light">
                                 <IonCardHeader>
                                     <IonCardTitle style={{fontWeight: '600', fontSize: '22px', color: '#30419b'}}>Login</IonCardTitle>
                                 </IonCardHeader>
                                 <IonCardContent>
-                                    <form onSubmit={e => this.handleSubmit(e)} action="post">
-                                        <IonList>
+                                    <form color="light" onSubmit={e => this.handleSubmit(e)} action="post">
+                                        <IonList style={{backgroundColor: '#ffffff'}}>
                                             <InputItem lines="none">
                                                 <StyledIcon icon={mailOutline} color="primary" ios={mailOutline} md={mailSharp} />
                                                 <StyledInput 
@@ -208,15 +220,15 @@ class Login extends Component {
                                         </IonList>
                                     </form>
                                 </IonCardContent>
-                            </IonCard>
+                            </StyledCard>
                         </IonRow>
                     </IonGrid>
                 </Content>
-                <IonFooter>
+                <StyledFooter>
                     <IonToolbar style={{'--background': '#222d6c', color: '#ffffff'}}>
                         <IonTitle style={{fontSize: '10px', textAlign: 'center'}}>2020 &copy; Lingkar 9 Titian Media. All rights reserved.</IonTitle>
                     </IonToolbar>
-                </IonFooter>
+                </StyledFooter>
             </IonPage>
         )
     }

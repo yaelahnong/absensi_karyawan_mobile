@@ -3,9 +3,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React, { Component } from 'react';
 import ExploreContainer from '../../components/ExploreContainer';
-import ScanComp from '../../components/ScanComp/ScanComp';
 
-class ScanPage extends Component {
+class ScanComp extends Component {
     state = {
         value: '',
         latitude: '',
@@ -13,24 +12,24 @@ class ScanPage extends Component {
     }
 
     componentDidMount() {
-
+        this.openScanner();
     }
 
-    // openScanner = async () => {
-    //     const data = await BarcodeScanner.scan(
-    //         {
-    //             // preferFrontCamera : true,
-    //             // showFlipCameraButton : true,
-    //             showTorchButton : true,
-    //             prompt : "Place a barcode inside the scan area",
-    //         }
-    //     );
-    //     console.log(data);
-    //     this.setState({
-    //         value: data.text
-    //     });
-    //     // console.log(`Barcode data: ${data.text}`);
-    // };
+    openScanner = async () => {
+        const data = await BarcodeScanner.scan(
+            {
+                // preferFrontCamera : true,
+                // showFlipCameraButton : true,
+                showTorchButton : true,
+                prompt : "Place a barcode inside the scan area",
+            }
+        );
+        console.log(data);
+        this.setState({
+            value: data.text
+        });
+        // console.log(`Barcode data: ${data.text}`);
+    };
 
     getLocation = async () => {
         try {
@@ -71,18 +70,10 @@ class ScanPage extends Component {
 
     render() {
         return (
-            <IonPage>
-                <IonContent>
-                    <ScanComp />
-                    {/* <ExploreContainer name="Scan" /> */}
-                    {/* <IonButton onClick={() => this.qrScan()}>Scan QR Code</IonButton> */}
-                    {/* <IonButton onClick={() => this.openScanner()}>Scan Barcode</IonButton>
-                    <IonButton onClick={() => this.getLocation()}>{this.state.longitude && this.state.longitude ? `${this.state.latitude}, ${this.state.longitude}` : 'Get Location'}</IonButton>
-                    <IonButton onClick={() => this.setState({value:'', latitude: '', longitude: ''})}>Reset</IonButton> */}
-                </IonContent>
-            </IonPage>
+            <>
+            </>
         )
     }
 }
 
-export default ScanPage;
+export default ScanComp;

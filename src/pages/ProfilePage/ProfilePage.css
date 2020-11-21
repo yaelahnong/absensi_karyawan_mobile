@@ -3,6 +3,10 @@
     left: 30px;
 }
 
+.ios .camera-icon {
+    font-size: 40px;
+}
+
 .back-btn-profile {
     direction: rtl;
 }
