@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Plugins, Capacitor } from "@capacitor/core";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
@@ -35,6 +35,7 @@ import ScanPage from './pages/ScanPage/ScanPage';
 import { IonReactRouter } from '@ionic/react-router';
 import OvertimePage from './pages/Overtime/OvertimePage';
 import ApprovalPage from './pages/Approval/ApprovalPage';
+import ChangePassword from './pages/ProfilePage/ChangePassword/ChangePassword';
 
 const NoMatch = () => {
   return <div>404 Not found</div>
@@ -54,6 +55,8 @@ const App: React.FC = () => {
       });
     }
   }, []);
+
+  // const routerRef = useRef<HTMLIonRouterOutletElement | null>(null);
 
   return (
     <IonApp>
@@ -79,6 +82,9 @@ const App: React.FC = () => {
             <Route path="/profile">
               <ProfilePage />
               <BotNavComp />
+            </Route>
+            <Route path="/change-password">
+              <ChangePassword />
             </Route>
             {/* <Route path="/scan">
               <ScanPage />

@@ -1,8 +1,11 @@
-import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFab, IonGrid, IonIcon, IonImg, IonItemDivider, IonPage, IonRow, IonText } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFab, IonGrid, IonIcon, IonImg, IonItemDivider, IonModal, IonPage, IonRow, IonText } from '@ionic/react';
 import { camera, chevronBackOutline, chevronForwardOutline, locationSharp, logoWhatsapp, mailOpen, pencil, pencilSharp } from 'ionicons/icons';
-import React, { Component } from 'react';
+import React, { Component, FormEvent } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
+import ChangePassword from './ChangePassword/ChangePassword';
+
+import '../../theme/variables.css';
 
 import './ProfilePage.css';
 
@@ -38,6 +41,11 @@ const StyledContainer = styled.div`
     display: flex;
     align-items: start;
     max-height: 33.5%;
+}
+@media screen and (min-height: 812px){
+    display: flex;
+    align-items: start;
+    min-height: 36%;
 }
 @media screen and (min-height: 823px){
     display: flex;
@@ -136,50 +144,58 @@ z-index: 1;
 @media screen and (min-height: 500px){
     font-size: 24px;
     position: absolute;
-    right: 0;
-    top: 43%;
+    right: 1.5%;
+    top: 45%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 600px){
     font-size: 28px;
     position: absolute;
     right: 2.5%;
     top: 42.3%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 667px){
     font-size: 28px;
     position: absolute;
     right: 0;
     top: 38.5%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 682px){
     font-size: 28px;
     position: absolute;
     right: 0;
     top: 39%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 701px){
     font-size: 28px;
     position: absolute;
     right: 0;
     top: 41%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 720px){
     font-size: 28px;
     position: absolute;
     right: 0;
     top: 37.7%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 731px){
     font-size: 28px;
     position: absolute;
-    right: 0;
+    right: 6%;
     top: 41%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 768px){
     font-size: 28px;
     position: absolute;
     right: 0;
     top: 29.7%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 812px){
     font-size: 28px;
@@ -200,12 +216,14 @@ z-index: 1;
     position: absolute;
     right: 3%;
     top: 47.7%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 1366px){
     font-size: 28px;
     position: absolute;
     right: 2%;
     top: 47.3%;
+    --ripple-color: rgba(251,251,251,0);
 }
 `;
 
@@ -262,7 +280,6 @@ const StyledLogoutBtn = styled(IonButton)`
 const StyledChangePassword = styled(IonButton)`
     height: 28px;
     @media screen and (min-height: 500px){
-
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -280,12 +297,15 @@ const StyledChangePassword = styled(IonButton)`
     }
 `;
 
-
+// interface ProfilePageProps {
+//     router: HTMLIonRouterOutletElement | null;
+// }
 
 class ProfilePage extends Component {
     state = {
         redirect: false,
-        isLoading: false
+        isLoading: false,
+        showModal: false
     }
 
     componentDidMount() {
@@ -306,6 +326,13 @@ class ProfilePage extends Component {
             redirect: true
         });
 
+    }
+
+    closeModal = (e: FormEvent) => {
+        e.preventDefault();
+        this.setState({
+            showModal: false
+        });
     }
 
     render() {
@@ -358,7 +385,7 @@ class ProfilePage extends Component {
                             <IonGrid>
                                 <IonRow style={{paddingBottom: '15px', alignItems: 'center'}}>
                                     <IonCol size="auto" no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={mailOpen}></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: 'var(--ion-color-primary)', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={mailOpen}></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>{sessionStorage.getItem('email')}</h3>
                                         </IonText>
@@ -371,7 +398,7 @@ class ProfilePage extends Component {
                                 </IonRow>
                                 <IonRow style={{paddingBottom: '15px', alignItems: 'center'}}>
                                     <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%'}} src="assets/icon/contacts-black-24dp.svg"></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: 'var(--ion-color-primary)', padding: '10px', borderRadius: '50%'}} src="assets/icon/contacts-black-24dp.svg"></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>200310032021061001</h3>
                                         </IonText>
@@ -379,7 +406,7 @@ class ProfilePage extends Component {
                                 </IonRow>
                                 <IonRow style={{paddingBottom: '15px', alignItems: 'center'}}>
                                     <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={logoWhatsapp}></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: 'var(--ion-color-primary)', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={logoWhatsapp}></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>{sessionStorage.getItem('no_telp')}</h3>
                                         </IonText>
@@ -387,7 +414,7 @@ class ProfilePage extends Component {
                                 </IonRow>
                                 <IonRow style={{alignItems: 'center'}}>
                                     <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={locationSharp}></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: 'var(--ion-color-primary)', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={locationSharp}></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>Bogor, Jawa Barat</h3>
                                         </IonText>
@@ -427,7 +454,19 @@ class ProfilePage extends Component {
                             <IonBackButton text="Change Password" className="inner-btn" icon={chevronForwardOutline} color="primary" defaultHref="/home"></IonBackButton>
                         </IonButtons>
                     </FlexBtn> */}
-                    <StyledChangePassword expand="block" fill="clear">
+                    {/* <IonModal
+                        isOpen={this.state.showModal}
+                        cssClass='my-custom-class'
+                        swipeToClose={true}
+                        presentingElement={this.props.router || undefined}
+                        onDidDismiss={() => {
+                            this.setState({
+                                showModal: false
+                            })
+                        }}>
+                        <ChangePassword />
+                    </IonModal> */}
+                    <StyledChangePassword expand="block" fill="clear" routerLink="/change-password">
                         <IonText>Change Password</IonText>
                         <IonIcon slot="end" icon={chevronForwardOutline}></IonIcon>
                     </StyledChangePassword>

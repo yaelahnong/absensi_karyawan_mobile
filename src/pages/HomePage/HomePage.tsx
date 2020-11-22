@@ -1,4 +1,4 @@
-import { IonPage, IonContent, IonGrid, IonRow, IonText, IonCol, IonImg, IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonButton } from '@ionic/react';
+import { IonPage, IonContent, IonGrid, IonRow, IonText, IonCol, IonImg, IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonButton, IonDatetime, IonLabel } from '@ionic/react';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
@@ -13,6 +13,17 @@ const StyledBackgroundImg = styled(IonContent)`
 const StyledAvatar = styled(IonImg)`
     clip-path: circle();
     width: 60px;
+`;
+
+const StyledLabel = styled(IonLabel)`
+    font-weight: 600;
+
+    @media screen and (min-width: 375px){
+        font-size: 12px;
+    }
+    @media screen and (min-width: 411px){
+        font-size: 14px;
+    }
 `;
 
 class HomePage extends Component {
@@ -50,16 +61,26 @@ class HomePage extends Component {
                         <IonRow style={{alignItems: 'center'}}>
                             <IonCard color="light" style={{flex: '1', borderRadius: '12px'}}>
                                 <IonCardContent style={{display: 'flex', justifyContent: 'space-around'}}>
-                                    <div style={{width: '60px', height: '60px', borderRadius: '50%', backgroundColor: 'grey'}}></div>
-                                    <div style={{width: '60px', height: '60px', borderRadius: '50%', backgroundColor: 'grey'}}></div>
-                                    <div style={{width: '60px', height: '60px', borderRadius: '50%', backgroundColor: 'grey'}}></div>
+                                    <div style={{display: 'flex', flex: '1', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                                        <IonImg src="assets/icon/partners.png" style={{width: '60px'}} />
+                                        <StyledLabel>Employee Data</StyledLabel>
+                                    </div>
+                                    <div style={{display: 'flex', flex: '1', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                                        <IonImg src="assets/icon/schedule.png" style={{width: '60px'}} />
+                                        <StyledLabel>Schedule</StyledLabel>
+                                    </div>
+                                    <div style={{display: 'flex', flex: '1', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+                                        <IonImg src="assets/icon/down-arrow.png" style={{width: '60px'}} />
+                                        <StyledLabel>Download</StyledLabel>
+                                    </div>
                                 </IonCardContent>
                             </IonCard>
                         </IonRow>
                         <IonRow>
                             <IonCard color="light" style={{flex: '1', borderRadius: '12px'}}>
-                                <IonCardHeader>
-                                    <IonCardTitle color="primary" style={{fontWeight: 600}}>Working hours</IonCardTitle>
+                                <IonCardHeader style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+                                    <IonCardTitle color="primary" style={{fontWeight: 600, fontSize: '18px'}} className="card-title-home">Working hours</IonCardTitle>
+                                    <IonDatetime style={{fontWeight: 600, fontSize: '12px', color: 'var(--ion-color-medium)'}} displayFormat="D MMMM YYYY" value={Date()}></IonDatetime>
                                 </IonCardHeader>
                                 <IonCardContent>
                                     <div style={{
@@ -79,7 +100,7 @@ class HomePage extends Component {
                             </IonCard>
                         </IonRow>
                     </IonGrid>
-                    <div className="content" style={{height: '40%', backgroundColor: 'var(--ion-background-color)'}}>
+                    <div className="content" style={{height: '40%', backgroundColor: 'var(--ion-color-bg)'}}>
                         
                     </div>
                 </StyledBackgroundImg>

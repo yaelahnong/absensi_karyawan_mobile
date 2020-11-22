@@ -198,6 +198,7 @@ class Login extends Component {
                                                     autocomplete="off"
                                                     autoCapitalize="off"
                                                     autoCorrect="off"
+                                                    required={true}
                                                     onIonInput={(e: any) => this.handleInputChange(e)} 
                                                 />
                                             </InputItem>
@@ -207,6 +208,7 @@ class Login extends Component {
                                                     type="password" 
                                                     name="password"
                                                     placeholder="Password"
+                                                    required={true}
                                                     onIonInput={(e: any) => this.handleInputChange(e)} 
                                                 />
                                             </InputItem>

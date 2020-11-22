@@ -3,6 +3,7 @@ import Axios from 'axios';
 import React, { Component, FormEvent } from 'react';
 import { Redirect, RouteComponentProps, withRouter } from 'react-router';
 import styled from 'styled-components';
+import '../../theme/variables.css';
 
 const StyledInput = styled(IonInput)`
     border-top-right-radius: 6px;
@@ -47,7 +48,7 @@ class ResetPassword extends Component<MatchProps> {
 
     async componentDidMount() {
         try {
-            await Axios.get(`http://localhost:8000/reset/${this.props.match.params.token}`)
+            await Axios.get(`http://192.168.1.12/absensi_karyawan_api/public/reset/${this.props.match.params.token}`)
                 .then((result) => {
                     console.log(result);
                     if(result.data.message === 'Token valid') {
@@ -82,7 +83,7 @@ class ResetPassword extends Component<MatchProps> {
             isLoading: true
         });
         try {
-            await Axios.put(`http://localhost:8000/updatePasswordViaEmail/${this.props.match.params.token}`, {
+            await Axios.put(`http://192.168.1.12/absensi_karyawan_api/public/updatePasswordViaEmail/${this.props.match.params.token}`, {
                 email: this.state.email,
                 password: this.state.password
             }).then((result) => {
@@ -104,7 +105,7 @@ class ResetPassword extends Component<MatchProps> {
 
     onLoginUser = async () => {
         try {
-            await Axios.post('http://localhost:8000/login', {
+            await Axios.post('http://192.168.1.12/absensi_karyawan_api/public/login', {
                 email: this.state.email,
                 password: this.state.password
             }).then((result) => {
@@ -114,6 +115,7 @@ class ResetPassword extends Component<MatchProps> {
                     sessionStorage.setItem('nama', result.data.message.nama);
                     sessionStorage.setItem('email', result.data.message.email);
                     sessionStorage.setItem('no_telp', result.data.message.no_telp);
+                    sessionStorage.setItem('foto', result.data.message.foto);
                     localStorage.setItem('api_token', result.data.api_token);
                     this.setState({
                         redirect: true
@@ -172,22 +174,24 @@ class ResetPassword extends Component<MatchProps> {
             return <Redirect to={'/'} />
         }
         if(this.state.isValidating) {
-            return <div>Loading ...</div>
+            return <div style={{backgroundColor: 'var(--ion-color-light)', height: '100vh'}}>Loading ...</div>
         } else {
             return (
                 <IonPage>
-                    <IonContent fullscreen>
+                    <IonContent fullscreen color="light">
                         <IonGrid style={{height: '95%'}}>
                             <IonRow style={{height: '95%', alignItems: 'center', justifyContent: 'center'}}>
                                 <form onSubmit={e => this.handleSubmit(e)} action="post" style={{width: '90%'}}>
                                     <IonLabel style={{color: '#6c7787', fontSize: '14px'}}>New Password</IonLabel>
                                     <StyledInput 
+                                        color="black"
                                         type="password" 
                                         name="password"
                                         onIonInput={(e: any) => this.handleInputChange(e)} 
                                     />
                                     <IonLabel style={{color: '#6c7787', fontSize: '14px'}}>Confirm Password</IonLabel>
                                     <StyledInput 
+                                        color="black"
                                         type="password" 
                                         name="confirmPassword"
                                         onIonInput={(e: any) => this.handleInputChange(e)} 

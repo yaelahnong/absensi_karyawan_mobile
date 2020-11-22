@@ -2,8 +2,7 @@ import { IonAlert, IonBackButton, IonButton, IonButtons, IonCol, IonContent, Ion
 import Axios from 'axios';
 import React, { Component, FormEvent } from 'react';
 import styled from 'styled-components';
-import '../../theme/variables.css';
-import './ForgotPassword.css';
+import './ChangePassword.css';
 
 const StyledGrid = styled(IonGrid)`
     padding-inline-start: 12.5px;
@@ -31,7 +30,7 @@ const FlexBtn = styled.div`
     justify-content: center;
 `;
 
-class ForgotPassword extends Component {
+class EditProfile extends Component {
     state = {
         email: '',
         showAlert: false,
@@ -40,7 +39,7 @@ class ForgotPassword extends Component {
         isLoading: false
     }
 
-    handleSubmit = (e: FormEvent) => {
+    handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         
         this.onSendEmail();
@@ -52,12 +51,12 @@ class ForgotPassword extends Component {
         });
     }
 
-    onSendEmail = async () => {
+    onSendEmail = () => {
         this.setState({
             isLoading: true
         });
         try {
-            await Axios.post('http://192.168.1.12/absensi_karyawan_api/public/forgot_password', {
+            Axios.post('http://localhost:8000/forgot_password', {
                 email: this.state.email
             }).then((result) => {
                 this.setState({
@@ -92,7 +91,7 @@ class ForgotPassword extends Component {
     render() {
         return (
             <IonPage>
-                <IonContent color="light" fullscreen>
+                <IonContent fullscreen color="light">
                     <IonAlert
                         isOpen={this.state.showAlert}
                         onDidDismiss={() => this.setState({showAlert: false})}
@@ -102,10 +101,10 @@ class ForgotPassword extends Component {
                         buttons={['OK']}
                     />
                     <IonToolbar color="light">
-                        <IonButtons className="forgot-back-button" slot="start">
-                            <IonBackButton defaultHref="/"></IonBackButton>
+                        <IonButtons color="primary" slot="start">
+                            <IonBackButton color="primary" defaultHref="/profile"></IonBackButton>
                         </IonButtons>
-                        <IonTitle color="black">Find your account</IonTitle>
+                        <IonTitle>Back</IonTitle>
                     </IonToolbar>
                     <StyledGrid>
                         <IonRow>
@@ -131,13 +130,11 @@ class ForgotPassword extends Component {
                         <form onSubmit={e => this.handleSubmit(e)} action="post">
                             <IonLabel style={{color: '#6c7787', fontSize: '14px'}}>Email address</IonLabel>
                             <StyledInput 
-                                color="black"
                                 type="email" 
                                 name="email"
                                 autocomplete="off"
                                 autoCapitalize="off"
                                 autoCorrect="off"
-                                required={true}
                                 onIonInput={(e: any) => this.handleInputChange(e)} 
                             />
                             <FlexBtn>
@@ -153,4 +150,4 @@ class ForgotPassword extends Component {
     }
 }
 
-export default ForgotPassword;
+export default EditProfile;

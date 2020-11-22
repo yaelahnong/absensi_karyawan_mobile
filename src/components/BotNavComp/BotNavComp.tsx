@@ -77,23 +77,23 @@ class BotNavComp extends Component {
                     <Route path="/profile" component={ProfilePage} exact={true} />
                 </IonRouterOutlet>
                 <IonTabBar color="light" slot="bottom">
-                <IonTabButton tab="home" href="/home">
+                <IonTabButton style={{'--ripple-color': '#ffffff'}} tab="home" href="/home">
                     <IonIcon size="medium" icon={home}  />
                     <IonLabel>Home</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="overtime" href="/overtime">
+                <IonTabButton style={{'--ripple-color': '#ffffff'}} tab="overtime" href="/overtime">
                     <IonIcon size="medium" src="assets/icon/clock.svg"  />
                     <IonLabel>Overtime</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="overtime" href="/overtime">
+                <IonTabButton style={{'--ripple-color': '#ffffff'}} tab="overtime" href="/overtime">
                     <IonIcon size="medium" />
                     <IonLabel>Scan</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="approval" href="/approval">
+                <IonTabButton style={{'--ripple-color': '#ffffff'}} tab="approval" href="/approval">
                     <IonIcon size="medium" src="assets/icon/clipboard-text.svg"  />
                     <IonLabel>Approval</IonLabel>
                 </IonTabButton>
-                <IonTabButton tab="profile" href="/profile">
+                <IonTabButton style={{'--ripple-color': '#ffffff'}} tab="profile" href="/profile">
                     <IonIcon size="medium" icon={personCircle}  />
                     <IonLabel>Profile</IonLabel>
                 </IonTabButton>
