@@ -1,5 +1,5 @@
-import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFab, IonGrid, IonIcon, IonImg, IonItem, IonItemDivider, IonList, IonPage, IonRow, IonText } from '@ionic/react';
-import { camera, chevronBackOutline, chevronForwardOutline, locationSharp, logoWhatsapp, mailOpen } from 'ionicons/icons';
+import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFab, IonGrid, IonIcon, IonImg, IonItemDivider, IonPage, IonRow, IonText } from '@ionic/react';
+import { camera, chevronBackOutline, chevronForwardOutline, locationSharp, logoWhatsapp, mailOpen, pencil, pencilSharp } from 'ionicons/icons';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
@@ -39,10 +39,10 @@ const StyledContainer = styled.div`
     align-items: start;
     max-height: 33.5%;
 }
-@media screen and (min-height: 820px){
+@media screen and (min-height: 823px){
     display: flex;
     align-items: start;
-    max-height: 39%;
+    max-height: 36.7%;
 }
 @media screen and (min-height: 992px){
     display: flex;
@@ -78,6 +78,10 @@ const ClipPath = styled.div`
 @media screen and (min-height: 768px){
     justify-content: flex-end;
     clip-path: circle(51.2% at 91% 21%);
+}
+@media screen and (min-height: 823px){
+    justify-content: flex-end;
+    clip-path: circle(51.2% at 91% 19%);
 }
 @media screen and (min-height: 992px){
     justify-content: flex-end;
@@ -125,6 +129,10 @@ const StyledImg = styled(IonImg)`
 `;
 
 const EditProfilePicture = styled(IonButton)`
+z-index: 1;
+&::part(native) {
+    padding: 0;
+}
 @media screen and (min-height: 500px){
     font-size: 24px;
     position: absolute;
@@ -134,7 +142,7 @@ const EditProfilePicture = styled(IonButton)`
 @media screen and (min-height: 600px){
     font-size: 28px;
     position: absolute;
-    right: 0;
+    right: 2.5%;
     top: 42.3%;
 }
 @media screen and (min-height: 667px){
@@ -173,23 +181,31 @@ const EditProfilePicture = styled(IonButton)`
     right: 0;
     top: 29.7%;
 }
-@media screen and (min-height: 820px){
+@media screen and (min-height: 812px){
     font-size: 28px;
     position: absolute;
-    right: 0;
-    top: 35.7%;
+    right: 5%;
+    top: 32.2%;
+    --ripple-color: rgba(251,251,251,0);
+}
+@media screen and (min-height: 823px){
+    font-size: 28px;
+    position: absolute;
+    right: 5%;
+    top: 34.7%;
+    --ripple-color: rgba(251,251,251,0);
 }
 @media screen and (min-height: 992px){
     font-size: 28px;
     position: absolute;
-    right: 0;
-    top: 45.7%;
+    right: 3%;
+    top: 47.7%;
 }
 @media screen and (min-height: 1366px){
     font-size: 28px;
     position: absolute;
-    right: 0;
-    top: 46%;
+    right: 2%;
+    top: 47.3%;
 }
 `;
 
@@ -206,6 +222,13 @@ const StyledCard = styled(IonCard)`
     @media screen and (min-height: 768px){
         margin-inline: 28px;
     }
+`;
+
+const StyledCardContent = styled(IonCardContent)`
+    paddingTop: 10px; 
+    paddingBottom: 10px; 
+    paddingLeft: 10px; 
+    paddingRight: 10px;
 `;
 
 const StyledLogoutBtn = styled(IonButton)`
@@ -328,19 +351,27 @@ class ProfilePage extends Component {
                         </div>
                     </IonGrid>
                     <StyledCard color="light" style={{boxShadow: 'none', marginTop: '12px', marginBottom: '12px'}}>
-                        <IonCardContent style={{paddingTop: '10px', paddingBottom: '10px'}}>
+                        <IonFab horizontal="end" onClick={() => console.log('edit!')} style={{top: '20px', right: '20px'}}>
+                            <IonIcon  src="assets/icon/pencil.svg" style={{fontSize: '18px'}}></IonIcon>
+                        </IonFab>
+                        <StyledCardContent>
                             <IonGrid>
                                 <IonRow style={{paddingBottom: '15px', alignItems: 'center'}}>
-                                    <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={mailOpen}></IonIcon>
+                                    <IonCol size="auto" no-padding style={{display: 'flex', alignItems: 'center'}}>
+                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={mailOpen}></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>{sessionStorage.getItem('email')}</h3>
                                         </IonText>
                                     </IonCol>
+                                    {/* <IonCol size="auto">
+                                        <IonButton fill="clear" style={{}}>
+                                            <IonIcon src="assets/icon/pencil.svg" style={{fontSize: '14px'}}></IonIcon>
+                                        </IonButton>
+                                    </IonCol> */}
                                 </IonRow>
                                 <IonRow style={{paddingBottom: '15px', alignItems: 'center'}}>
                                     <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%'}} src="assets/icon/contacts-black-24dp.svg"></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%'}} src="assets/icon/contacts-black-24dp.svg"></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>200310032021061001</h3>
                                         </IonText>
@@ -348,7 +379,7 @@ class ProfilePage extends Component {
                                 </IonRow>
                                 <IonRow style={{paddingBottom: '15px', alignItems: 'center'}}>
                                     <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={logoWhatsapp}></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={logoWhatsapp}></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>{sessionStorage.getItem('no_telp')}</h3>
                                         </IonText>
@@ -356,7 +387,7 @@ class ProfilePage extends Component {
                                 </IonRow>
                                 <IonRow style={{alignItems: 'center'}}>
                                     <IonCol no-padding style={{display: 'flex', alignItems: 'center'}}>
-                                        <IonIcon style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={locationSharp}></IonIcon>
+                                        <IonIcon size="small" style={{backgroundColor: '#30419b', padding: '10px', borderRadius: '50%', color: '#ffffff'}} icon={locationSharp}></IonIcon>
                                         <IonText color="dark" style={{marginLeft: '12px'}}>
                                             <h3 style={{fontWeight: 'bold'}}>Bogor, Jawa Barat</h3>
                                         </IonText>
@@ -389,7 +420,7 @@ class ProfilePage extends Component {
                                     </IonText>
                                 </StyledItem>
                             </IonList> */}
-                        </IonCardContent>
+                        </StyledCardContent>
                     </StyledCard>
                     {/* <FlexBtn>
                         <IonButtons className="back-btn-profile">

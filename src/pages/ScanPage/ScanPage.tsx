@@ -1,9 +1,6 @@
-import { Geolocation } from '@capacitor/core';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonPage } from '@ionic/react';
 import React, { Component } from 'react';
 import ExploreContainer from '../../components/ExploreContainer';
-import ScanComp from '../../components/ScanComp/ScanComp';
 
 class ScanPage extends Component {
     state = {
@@ -71,17 +68,13 @@ class ScanPage extends Component {
 
     render() {
         return (
-            <></>
-            // <ScanComp />
-            // <IonPage>
-            //     <IonContent>
-            //         <ExploreContainer name="Scan" />
-            //         <IonButton onClick={() => this.qrScan()}>Scan QR Code</IonButton>
-            //         <IonButton onClick={() => this.openScanner()}>Scan Barcode</IonButton>
-            //         <IonButton onClick={() => this.getLocation()}>{this.state.longitude && this.state.longitude ? `${this.state.latitude}, ${this.state.longitude}` : 'Get Location'}</IonButton>
-            //         <IonButton onClick={() => this.setState({value:'', latitude: '', longitude: ''})}>Reset</IonButton> */}
-            //     </IonContent>
-            // </IonPage>
+            <>
+                <IonPage>
+                    <IonContent>
+                        <ExploreContainer name="Scan" />
+                    </IonContent>
+                </IonPage>
+            </>
         )
     }
 }

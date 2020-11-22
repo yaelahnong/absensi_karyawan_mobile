@@ -1,13 +1,13 @@
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, IonFab, IonFabButton } from '@ionic/react';
-import { home, scan, personCircle, homeOutline, scanOutline, timeOutline, personOutline, readerOutline } from 'ionicons/icons';
+import { home, scan, personCircle } from 'ionicons/icons';
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import HomePage from '../../pages/HomePage/HomePage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import ScanPage from '../../pages/ScanPage/ScanPage';
 
-import Clock from '../../assets/icon/clock.svg';
-import ClipboardText from '../../assets/icon/clipboard-text.svg';
+import Clock from 'assets/icon/clock.svg';
+import ClipboardText from 'assets/icon/clipboard-text.svg';
 import OvertimePage from '../../pages/Overtime/OvertimePage';
 import ApprovalPage from '../../pages/Approval/ApprovalPage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
@@ -82,7 +82,7 @@ class BotNavComp extends Component {
                     <IonLabel>Home</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="overtime" href="/overtime">
-                    <IonIcon size="medium" icon={Clock}  />
+                    <IonIcon size="medium" src="assets/icon/clock.svg"  />
                     <IonLabel>Overtime</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="overtime" href="/overtime">
@@ -90,7 +90,7 @@ class BotNavComp extends Component {
                     <IonLabel>Scan</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="approval" href="/approval">
-                    <IonIcon size="medium" icon={ClipboardText}  />
+                    <IonIcon size="medium" src="assets/icon/clipboard-text.svg"  />
                     <IonLabel>Approval</IonLabel>
                 </IonTabButton>
                 <IonTabButton tab="profile" href="/profile">

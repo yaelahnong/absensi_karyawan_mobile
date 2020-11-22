@@ -15,7 +15,6 @@
     height: 36px;
     --border-width: 2px;
 }
-
 /* .ios ion-content {
     --overflow: scroll;
 } */
@@ -28,11 +27,36 @@
     --icon-font-size: 40px;
 } */
 
-/* .ios .edit-btn-profile {
-    top: 36%;
-    --padding-start: 5px;
-    --padding-end: 5px;
-} */
+.ios .edit-btn-profile {
+    height: inherit;
+}
+
+.card-content-ios {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+}
+
+@media screen and (min-width: 414px){
+    .card-content-ios {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-inline-start: 20px;
+        padding-inline-end: 20px;
+    }
+
+}
+
+@media screen and (min-width: 375px){
+    .card-content-ios {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-inline-start: 20px;
+        padding-inline-end: 20px;
+    }
+
+}
 
 .item-inner{
 min-height: 1px !important;

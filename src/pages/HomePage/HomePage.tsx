@@ -1,8 +1,7 @@
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonThumbnail, IonGrid, IonRow, IonText, IonCol, IonImg, IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonButton } from '@ionic/react';
+import { IonPage, IonContent, IonGrid, IonRow, IonText, IonCol, IonImg, IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonButton } from '@ionic/react';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
-import ExploreContainer from '../../components/ExploreContainer';
 import './HomePage.css';
 
 const StyledBackgroundImg = styled(IonContent)`
@@ -80,7 +79,7 @@ class HomePage extends Component {
                             </IonCard>
                         </IonRow>
                     </IonGrid>
-                    <div className="content" style={{height: '40%', backgroundColor: '#e5e7f0'}}>
+                    <div className="content" style={{height: '40%', backgroundColor: 'var(--ion-background-color)'}}>
                         
                     </div>
                 </StyledBackgroundImg>
