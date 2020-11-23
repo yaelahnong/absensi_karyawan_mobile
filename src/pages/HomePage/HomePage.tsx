@@ -35,14 +35,17 @@ export interface Attendance {
     id_user: number
 }
 
-export interface HomeState {
-    attendance: Attendance[]
-}
+// export interface HomeState {
+//     attendance: Attendance[]
+// }
+
+const defaultState: Attendance[] = [];
 
 class HomePage extends Component {
     state = {
         redirect: false,
-        isChecked: false
+        isChecked: false,
+        attendance: defaultState
     }
 
     componentDidMount() {
@@ -141,10 +144,4 @@ class HomePage extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    return {
-        attendance: state.attendance
-    }
-}
-
-export default connect(mapStatetoProps)(HomePage);
+export default HomePage;
