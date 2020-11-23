@@ -113,7 +113,7 @@ class ChangePassword extends Component {
                             this.setState({
                                 redirect: true
                             });
-                        }, 1000)
+                        }, 2000)
                     });
                 }
             });
@@ -152,18 +152,9 @@ class ChangePassword extends Component {
                         <IonButtons className="change-back-button" slot="start">
                             <IonBackButton defaultHref="/profile"></IonBackButton>
                         </IonButtons>
-                        <IonTitle color="black">Password</IonTitle>
+                        <IonTitle color="black">Change Password</IonTitle>
                     </IonToolbar>
-                    <StyledGrid>
-                        <IonRow>
-                            <IonCol>
-                                <IonText color="black">
-                                    <h3 style={{fontWeight: 'bold'}}>Change Password</h3>
-                                </IonText>
-                            </IonCol>
-                        </IonRow>
-                    </StyledGrid>
-                    <div className="forgot-password" style={{paddingLeft: '16px', paddingRight: '16px', marginTop: '10px'}}>
+                    <div className="forgot-password" style={{paddingLeft: '16px', paddingRight: '16px', marginTop: '50px'}}>
                             <StyledItem color="light" lines="none">
                                 <IonLabel style={{color: '#6c7787', fontSize: '14px', margin: '0', fontFamily: 'Poppins, sans-serif'}}>Current Password</IonLabel>
                             </StyledItem>
@@ -213,7 +204,7 @@ class ChangePassword extends Component {
                             </StyledItem>
                             <FlexBtn>
                                 <IonButton onClick={e => this.handleSubmit(e)} style={{width: '100%', marginLeft: '0', marginRight: '0', textTransform: 'capitalize'}}>
-                                    {this.state.isLoading ? <IonSpinner color="light" /> : 'Send'}
+                                    {this.state.isLoading ? <IonSpinner color="light" /> : 'Change'}
                                 </IonButton>
                             </FlexBtn>
                     </div>

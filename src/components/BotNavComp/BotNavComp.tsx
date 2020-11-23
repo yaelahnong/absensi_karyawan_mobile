@@ -1,4 +1,4 @@
-import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, IonFab, IonFabButton } from '@ionic/react';
+import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel, IonFab, IonFabButton, IonAlert } from '@ionic/react';
 import { home, scan, personCircle } from 'ionicons/icons';
 import React, { Component } from 'react';
 import { Route } from 'react-router';
@@ -14,6 +14,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import styled from 'styled-components';
 
 import './BotNavComp.css';
+import { Geolocation } from '@capacitor/core';
 
 const StyledFab = styled(IonFab)`
 @media screen and (min-height: 500px){
@@ -49,6 +50,20 @@ const StyledFabButton = styled(IonFabButton)`
 `;
 
 class BotNavComp extends Component {
+    state = {
+        showAlert: false
+    }
+
+    onScan = () => {
+        if(sessionStorage.getItem('checkin')) {
+            this.setState({
+                showAlert: true
+            });
+        } else {
+            this.openScanner();
+        }
+    }
+
     openScanner = async () => {
         const data = await BarcodeScanner.scan(
             {
@@ -58,6 +73,7 @@ class BotNavComp extends Component {
                 prompt : "Place a barcode inside the scan area",
             }
         );
+        this.getLocation();
         console.log(data);
         this.setState({
             value: data.text
@@ -65,9 +81,33 @@ class BotNavComp extends Component {
         // console.log(`Barcode data: ${data.text}`);
     };
 
+    getLocation = async () => {
+        try {
+            await Geolocation.getCurrentPosition()
+            .then((result) => {
+                console.log(result);
+                this.setState({
+                    latitude: result.coords.latitude,
+                    longitude: result.coords.longitude
+                })
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     render() {
         return (
             <>
+            <IonAlert
+                isOpen={this.state.showAlert}
+                onDidDismiss={() => this.setState({showAlert: false})}
+                cssClass='my-custom-class'
+                header={'Checkout first'}
+                message={"checkout dulu bang"}
+                buttons={['OK']}
+            />
             <IonTabs>
                 <IonRouterOutlet>
                     <Route path="/home" component={HomePage} exact={true} />
@@ -100,7 +140,7 @@ class BotNavComp extends Component {
                 </IonTabBar>
             </IonTabs>
             <StyledFab horizontal="center" className="fab-scan">
-                <StyledFabButton onClick={() => this.openScanner()}>
+                <StyledFabButton onClick={() => this.onScan()}>
                     <IonIcon size="medium" icon={scan}  />
                     {/* <IonLabel>Scan</IonLabel> */}
                 </StyledFabButton>

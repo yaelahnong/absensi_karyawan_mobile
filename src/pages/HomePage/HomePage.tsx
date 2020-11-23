@@ -1,4 +1,6 @@
 import { IonPage, IonContent, IonGrid, IonRow, IonText, IonCol, IonImg, IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonButton, IonDatetime, IonLabel } from '@ionic/react';
+import { stat } from 'fs';
+import { connect } from 'http2';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
@@ -26,9 +28,21 @@ const StyledLabel = styled(IonLabel)`
     }
 `;
 
+export interface Attendance {
+    jam_masuk: string,
+    jam_keluar: string,
+    tanggal: string,
+    id_user: number
+}
+
+export interface HomeState {
+    attendance: Attendance[]
+}
+
 class HomePage extends Component {
     state = {
-        redirect: false
+        redirect: false,
+        isChecked: false
     }
 
     componentDidMount() {
@@ -38,6 +52,14 @@ class HomePage extends Component {
             this.setState({
                 redirect: true
             });
+        }
+    }
+
+    onGetAttendance = async () => {
+        try {
+
+        } catch(error) {
+            console.log(error);
         }
     }
 
@@ -93,8 +115,18 @@ class HomePage extends Component {
                                         <h2 style={{fontSize: '40px', fontWeight: 600, color: 'var(--ion-color-danger)'}}>16:00</h2>
                                     </div>
                                     <div style={{display: 'flex', marginTop: '16px', justifyContent: 'center'}}>
-                                        <IonButton style={{flex: '1', paddingInline: '16px'}}>Check in</IonButton>
-                                        <IonButton color="danger" style={{flex: '1', paddingInline: '16px'}}>Check out</IonButton>
+                                        {!this.state.isChecked ? <IonButton style={{flex: '1', paddingInline: '16px'}} onClick={() => {
+                                            this.setState({
+                                                isChecked: true
+                                            });
+                                            sessionStorage.setItem('checkin', 'true');
+                                        }}>Check in</IonButton> : ''}
+                                        {this.state.isChecked ? <IonButton color="danger" style={{flex: '1', paddingInline: '16px'}} onClick={() => {
+                                            this.setState({
+                                                isChecked: false
+                                            });
+                                            sessionStorage.removeItem('checkin');
+                                        }}>Check out</IonButton> : ''}
                                     </div>
                                 </IonCardContent>
                             </IonCard>
@@ -109,4 +141,10 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+const mapStatetoProps = (state) => {
+    return {
+        attendance: state.attendance
+    }
+}
+
+export default connect(mapStatetoProps)(HomePage);
