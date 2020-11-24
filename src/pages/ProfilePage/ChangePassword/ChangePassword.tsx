@@ -1,15 +1,11 @@
-import { IonAlert, IonBackButton, IonButton, IonButtons, IonCol, IonContent, IonGrid, IonInput, IonItem, IonLabel, IonPage, IonRow, IonSpinner, IonText, IonTitle, IonToast, IonToolbar } from '@ionic/react';
+import { IonAlert, IonBackButton, IonButton, IonButtons, IonContent, IonInput, IonItem, IonLabel, IonPage, IonSpinner, IonText, IonTitle, IonToast, IonToolbar } from '@ionic/react';
 import Axios from 'axios';
 import React, { Component, FormEvent } from 'react';
 import styled from 'styled-components';
 import './ChangePassword.css';
 import '../../../theme/variables.css';
 import { Redirect } from 'react-router';
-import { timeSharp } from 'ionicons/icons';
 
-const StyledGrid = styled(IonGrid)`
-    padding-inline-start: 12.5px;
-`;
 
 const StyledItem = styled(IonItem)`
     --padding-start: 0;

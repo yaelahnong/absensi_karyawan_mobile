@@ -1,9 +1,8 @@
-import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFab, IonGrid, IonIcon, IonImg, IonItemDivider, IonModal, IonPage, IonRow, IonText } from '@ionic/react';
-import { camera, chevronBackOutline, chevronForwardOutline, locationSharp, logoWhatsapp, mailOpen, pencil, pencilSharp } from 'ionicons/icons';
+import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCol, IonContent, IonFab, IonGrid, IonIcon, IonImg, IonItemDivider, IonPage, IonRow, IonText } from '@ionic/react';
+import { camera, chevronBackOutline, chevronForwardOutline, locationSharp, logoWhatsapp, mailOpen } from 'ionicons/icons';
 import React, { Component, FormEvent } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
-import ChangePassword from './ChangePassword/ChangePassword';
 
 import '../../theme/variables.css';
 

@@ -6,8 +6,6 @@ import HomePage from '../../pages/HomePage/HomePage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import ScanPage from '../../pages/ScanPage/ScanPage';
 
-import Clock from 'assets/icon/clock.svg';
-import ClipboardText from 'assets/icon/clipboard-text.svg';
 import OvertimePage from '../../pages/Overtime/OvertimePage';
 import ApprovalPage from '../../pages/Approval/ApprovalPage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';

@@ -191,6 +191,14 @@ body.dark {
   --ion-color-black-shade: #000000;
   --ion-color-black-tint: #1a1a1a;
 
+  /* background */
+  --ion-color-bg: #000000;
+  --ion-color-bg-rgb: 229,231,240;
+  --ion-color-bg-contrast: #ffffff;
+  --ion-color-bg-contrast-rgb: 0,0,0;
+  --ion-color-bg-shade: #cacbd3;
+  --ion-color-bg-tint: #e8e9f2;
+
   --ion-color-dark: #f4f5f8;
   --ion-color-dark-rgb: 244,245,248;
   --ion-color-dark-contrast: #000000;

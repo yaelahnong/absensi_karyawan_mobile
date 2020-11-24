@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Plugins, Capacitor } from "@capacitor/core";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import {
@@ -45,7 +45,7 @@ const App: React.FC = () => {
   
   useEffect(() => {
     if (Capacitor.isNative) {
-      Plugins.App.addListener("backButton", (e) => {
+      Plugins.App.addListener("backButton", () => {
         if (window.location.pathname === "/home" || window.location.pathname === "/scan" || window.location.pathname === "/profile") {
             Plugins.App.exitApp();
 

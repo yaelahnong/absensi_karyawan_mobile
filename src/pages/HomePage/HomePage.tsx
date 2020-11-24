@@ -1,9 +1,10 @@
 import { IonPage, IonContent, IonGrid, IonRow, IonText, IonCol, IonImg, IonCard, IonCardContent, IonCardTitle, IonCardHeader, IonButton, IonDatetime, IonLabel } from '@ionic/react';
-import { stat } from 'fs';
-import { connect } from 'http2';
+import Axios from 'axios';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import styled from 'styled-components';
+import AttendanceComp from '../../components/AttendanceComp/AttendanceComp';
+import ScheduleComp from '../../components/ScheduleComp/ScheduleComp';
 import './HomePage.css';
 
 const StyledBackgroundImg = styled(IonContent)`
@@ -28,29 +29,55 @@ const StyledLabel = styled(IonLabel)`
     }
 `;
 
-export interface Attendance {
+const StyledWhiteSpace = styled.div`
+    @media screen and (min-height:812px){
+        padding: 25%; 
+        backgroundColor: var(--ion-color-bg);
+    }
+    @media screen and (min-height:823px){
+        padding: 18%; 
+        backgroundColor: var(--ion-color-bg);
+    }
+`;
+
+interface Attendance {
+    id_absen: number,
     jam_masuk: string,
     jam_keluar: string,
     tanggal: string,
-    id_user: number
+    id_user: number,
+    status: number
+}
+
+interface Schedule {
+    id_schedule: number,
+    jam_masuk: string,
+    jam_keluar: string
 }
 
 // export interface HomeState {
 //     attendance: Attendance[]
 // }
 
-const defaultState: Attendance[] = [];
+const AttendanceState: Attendance[] = [];
+const ScheduleState: Schedule[] = [];
 
 class HomePage extends Component {
+    _isMounted = false;
     state = {
         redirect: false,
         isChecked: false,
-        attendance: defaultState
+        checkIn: AttendanceState,
+        checkOut: AttendanceState,
+        schedule: ScheduleState
     }
 
     componentDidMount() {
+        this._isMounted = true;
         if(sessionStorage.getItem("login")) {
-            
+            this.onGetCheckIn();
+            this.onGetCheckOut();
+            this.onGetWorkingHour();
         } else {
             this.setState({
                 redirect: true
@@ -58,11 +85,55 @@ class HomePage extends Component {
         }
     }
 
-    onGetAttendance = async () => {
-        try {
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
 
+    onGetCheckIn = async () => {
+        try {
+            await Axios.get(`http://192.168.1.12/absensi_karyawan_api/public/checkin/${sessionStorage.getItem('id_user')}?api_token=${sessionStorage.getItem('api_token')}`)
+            .then((result) => {
+                if(this._isMounted) {
+                    console.log('check-in', result);
+                    this.setState({
+                        checkIn: result.data.message
+                    });
+                }
+            });
         } catch(error) {
             console.log(error);
+        }
+    }
+
+    onGetCheckOut = async () => {
+        try {
+            await Axios.get(`http://192.168.1.12/absensi_karyawan_api/public/checkout/${sessionStorage.getItem('id_user')}?api_token=${sessionStorage.getItem('api_token')}`)
+            .then((result) => {
+                if(this._isMounted) {
+                    console.log('check-out', result);
+                    this.setState({
+                        checkOut: result.data.message
+                    });
+                }
+            });
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    onGetWorkingHour = async () => {
+        try {
+            await Axios.get(`http://192.168.1.12/absensi_karyawan_api/public/schedule?api_token=${sessionStorage.getItem('api_token')}`)
+            .then((result) => {
+                if(this._isMounted) {
+                    console.log('schedule', result);
+                    this.setState({
+                        schedule: result.data
+                    }, () => console.log('working-hour', this.state.schedule));
+                }
+            })
+        } catch(error) {
+            console.error();
         }
     }
 
@@ -70,6 +141,16 @@ class HomePage extends Component {
         if(this.state.redirect === true)     {
             return <Redirect to="/login" />
         }
+
+        const CheckInLog = this.state.checkIn ? this.state.checkIn.map((item) => {
+            return <AttendanceComp key={item.id_absen} time={item.jam_masuk} status={item.status} description="Check in" />
+        }) : ''
+        const CheckOutLog = this.state.checkOut ? this.state.checkOut.map((item) => {
+            return <AttendanceComp key={item.id_absen} time={item.jam_keluar} status={item.status} description="Check Out" />
+        }) : ''
+        const WorkingHours = this.state.schedule ? this.state.schedule.map((item) => {
+            return <ScheduleComp key={item.id_schedule} jam_masuk={item.jam_masuk} jam_keluar={item.jam_keluar} />
+        }) : ''
         return (
             <IonPage>
                 <StyledBackgroundImg>
@@ -108,15 +189,7 @@ class HomePage extends Component {
                                     <IonDatetime style={{fontWeight: 600, fontSize: '12px', color: 'var(--ion-color-medium)'}} displayFormat="D MMMM YYYY" value={Date()}></IonDatetime>
                                 </IonCardHeader>
                                 <IonCardContent>
-                                    <div style={{
-                                        backgroundColor: 'var(--ion-background-color)',
-                                        display: 'flex', justifyContent: 'center', alignItems: 'center',
-                                        paddingTop: '10px', paddingBottom: '10px', borderRadius: '16px'
-                                    }}>
-                                        <h2 style={{fontSize: '40px', fontWeight: 600}}>08:00</h2>
-                                        <IonText style={{padding: '10px', fontSize: '22px', fontWeight: 'bold'}}> - </IonText>
-                                        <h2 style={{fontSize: '40px', fontWeight: 600, color: 'var(--ion-color-danger)'}}>16:00</h2>
-                                    </div>
+                                    {WorkingHours}
                                     <div style={{display: 'flex', marginTop: '16px', justifyContent: 'center'}}>
                                         {!this.state.isChecked ? <IonButton style={{flex: '1', paddingInline: '16px'}} onClick={() => {
                                             this.setState({
@@ -136,7 +209,9 @@ class HomePage extends Component {
                         </IonRow>
                     </IonGrid>
                     <div className="content" style={{height: '40%', backgroundColor: 'var(--ion-color-bg)'}}>
-                        
+                        <StyledWhiteSpace className="blankspace"></StyledWhiteSpace>
+                        {CheckOutLog}
+                        {CheckInLog}
                     </div>
                 </StyledBackgroundImg>
             </IonPage>
